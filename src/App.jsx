@@ -21,8 +21,8 @@ const defaultModalState = {
 };
 function App() {
   const [formData, setFormData] = useState({
-    username: "dieboss@gmail.com",
-    password: "dieboss",
+    username: "",
+    password: "",
   });
   const [isAuth, setisAuth] = useState(false);
   const [productsData,setProductsData] = useState([]);
@@ -46,14 +46,14 @@ function App() {
     if(isAuth){
       getProducts()
     }
-  },[isAuth,productsData])
+  },[isAuth])
 
   const checkAdmin = async () => {
     try {
       await axios.post(`${API_BASE}/api/user/check`);
       setisAuth(true);
     } catch (err) {
-      console.log(err.response.data.message);
+      alert(err.response.data.message);
     }
   };
 
@@ -89,6 +89,7 @@ function App() {
     try {
       const response = await axios.delete(`${API_BASE}/api/${API_PATH}/admin/product/${id}`);
       alert(response?.data?.message);
+      getProducts()
     } catch (error) {
       alert(error.response?.data?.message)
     }
@@ -101,6 +102,7 @@ function App() {
         try{
           const response  = await axios.post(`${API_BASE}/api/${API_PATH}/admin/product`,{data:modalState})
           alert(response?.data?.message);
+          getProducts()
         }catch(err){
           console.log(err.response?.data?.message)
         }
@@ -109,6 +111,7 @@ function App() {
         try{
           const response  = await axios.put(`${API_BASE}/api/${API_PATH}/admin/product/${id}`,{data:modalState})
           alert(response?.data?.message);
+          getProducts()
         }catch(err){
           console.log(err.response?.data?.message)
         }
