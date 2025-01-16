@@ -1,5 +1,6 @@
 import { useState,useEffect,useRef } from 'react'
 import axios from 'axios'
+import { Modal } from 'bootstrap';
 
 const API_BASE = "https://ec-course-api.hexschool.io/v2";
 const API_PATH = "dieboss"; 
@@ -35,7 +36,7 @@ function App() {
       "$1"
     );
     axios.defaults.headers.common.Authorization = token;
-    productModalRef.current = new bootstrap.Modal('#productModal', {
+    productModalRef.current = new Modal('#productModal', {
       keyboard: false
     });
     checkAdmin();
