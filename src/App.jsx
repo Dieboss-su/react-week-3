@@ -1,9 +1,5 @@
 import { useState,useEffect,useRef } from 'react'
 import axios from 'axios'
-import 'bootstrap/dist/css/bootstrap.min.css'
-// import '.bootstrap/dist/js/bootstrap.bundle.min.js';
-// import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
 
 const API_BASE = "https://ec-course-api.hexschool.io/v2";
 const API_PATH = "dieboss"; 
