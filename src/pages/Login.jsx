@@ -1,11 +1,7 @@
 import { useState } from 'react'
 
-function Login ({handleSubmit,handleInputChange}){
-    const [formData, setFormData] = useState({
-        username: "",
-        password: "",
-      });
-    
+function Login ({handleSubmit,handleInputChange,formData}){
+
     return(
         <>
         <div className="container login">

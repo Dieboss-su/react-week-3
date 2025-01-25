@@ -25,7 +25,10 @@ const defaultModalState = {
   ]
 };
 function App() {
-  
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
   const [isAuth, setisAuth] = useState(false);
   const [productsData,setProductsData] = useState([]);
   const [pagination,setPagination] = useState(null)
@@ -165,7 +168,9 @@ function App() {
         openModal={openModal}
         deleteProduct={deleteProduct}
         />
-      ) : <Login handleInputChange={handleInputChange} handleSubmit={handleSubmit}/>}
+      ) : <Login handleInputChange={handleInputChange} handleSubmit={handleSubmit}
+      formData={formData} 
+      />}
         {/*MOdal*/}
         <ModalPage handleModalInputChange={handleModalInputChange} productModalRef={productModalRef} handleModalSubmit={handleModalSubmit}
         modalState={modalState}
