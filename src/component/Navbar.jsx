@@ -22,7 +22,7 @@ function Navbar (){
                             return (
                                 `nav-link ${isActive? 'text-light':''}`
                             )
-                        }} to='/product'> 使用者產品頁面</NavLink>
+                        }} to='/react-week-3/product'> 使用者產品頁面</NavLink>
                     </li>
                 </ul>
                 </div>
