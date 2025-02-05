@@ -12,7 +12,7 @@ function App() {
     <Navbar/>
     <div className="container">
       <Routes>
-        <Route path='/' element={<AdminPage />}></Route>
+        <Route path='/react-week-3/' element={<AdminPage />}></Route>
         <Route path='/product' element={<UserProductPage/>}></Route>
       </Routes>
     </div>

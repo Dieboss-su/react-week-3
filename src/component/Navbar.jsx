@@ -15,7 +15,7 @@ function Navbar (){
                             return (
                                 `nav-link ${isActive? 'text-light':''}`
                             )
-                        }} to='/'> Home</NavLink>
+                        }} to='/react-week-3/'> Home</NavLink>
                     </li>
                     <li className="nav-item ">
                         <NavLink className={({isActive}) =>{
