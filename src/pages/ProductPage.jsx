@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom"
+
+Link
 function ProductPage ({
     productsData,
     openModal,
@@ -39,10 +42,11 @@ function ProductPage ({
                             <button type="button" className="btn btn-outline-primary btn-sm" onClick={()=>{openModal('edit',item)}} >
                                 編輯
                             </button>
-                            <button type="button" className="btn btn-outline-danger btn-sm" onClick={()=>{deleteProduct(item.id)}}>
+                            <button type="button" className="btn btn-outline-danger btn-sm" disabled={item.is_enabled} onClick={()=>{deleteProduct(item.id)}}>
                                 刪除
                             </button>
                             </div>
+                            {Boolean(item.is_enabled) && <small className="text-danger">啟用中無法刪除</small>}
                         </td>
                         </tr>
                     )

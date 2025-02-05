@@ -58,6 +58,7 @@ function ModalPage ({handleModalInputChange,productModalRef,handleModalSubmit,mo
                 type="button"
                 className="btn-close"
                 aria-label="Close"
+                onClick={closeModal}
                 ></button>
             </div>
             <div className="modal-body">
