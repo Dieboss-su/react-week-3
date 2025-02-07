@@ -15,14 +15,14 @@ function Navbar (){
                             return (
                                 `nav-link ${isActive? 'text-light':''}`
                             )
-                        }} to='/react-week-3/'> Home</NavLink>
+                        }} to='/'> Home</NavLink>
                     </li>
                     <li className="nav-item ">
                         <NavLink className={({isActive}) =>{
                             return (
                                 `nav-link ${isActive? 'text-light':''}`
                             )
-                        }} to='/react-week-3/product'> 使用者產品頁面</NavLink>
+                        }} to='/product'> 使用者產品頁面</NavLink>
                     </li>
                 </ul>
                 </div>
