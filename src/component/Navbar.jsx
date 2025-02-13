@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function Navbar (){
@@ -22,7 +23,21 @@ function Navbar (){
                             return (
                                 `nav-link ${isActive? 'text-light':''}`
                             )
-                        }} to='/product'> 使用者產品頁面</NavLink>
+                        }} to='/products'> 使用者產品頁面</NavLink>
+                    </li>
+                    <li className="nav-item ">
+                        <NavLink className={({isActive}) =>{
+                            return (
+                                `nav-link ${isActive? 'text-light':''}`
+                            )
+                        }} to='/carts'> 購物車</NavLink>
+                    </li>
+                    <li className="nav-item ">
+                        <NavLink className={({isActive}) =>{
+                            return (
+                                `nav-link ${isActive? 'text-light':''}`
+                            )
+                        }} to='/login'> 管理者登入</NavLink>
                     </li>
                 </ul>
                 </div>

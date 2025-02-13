@@ -1,7 +1,5 @@
 
-import { Route,Routes } from 'react-router-dom';
-import AdminPage from './pages/AdminPage';
-import UserProductPage from './pages/UserProductPage';
+import { Outlet} from 'react-router-dom';
 import Navbar from './component/Navbar';
 
 
@@ -11,10 +9,7 @@ function App() {
     <>
     <Navbar/>
     <div className="container">
-      <Routes>
-        <Route path='/' element={<AdminPage />}></Route>
-        <Route path='/product' element={<UserProductPage/>}></Route>
-      </Routes>
+      <Outlet />
     </div>
       
     </>
