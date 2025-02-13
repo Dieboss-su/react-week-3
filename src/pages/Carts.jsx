@@ -38,6 +38,22 @@ export default function Carts (){
         }
     }
 
+    const changeCartQty = async (product_id,qty=1)=>{
+        const data = {
+            product_id,
+            'qty':Number(qty)
+        }
+        setScreenLoading(true)
+        try{
+            await axios.put(`${BASE_URL}/api/${API_PATH}/cart/${product_id}`,{data})
+            getCartList()
+        }catch(err){
+            console.log(err.response);
+        }finally{
+            setScreenLoading(false)
+        }
+    }
+
     const removeCart = async (product_id)=>{
         setScreenLoading(true)
         try{
