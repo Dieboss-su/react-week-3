@@ -5,6 +5,12 @@ import ModalPage from '../component/ModalPage'
 import Pagination from '../component/Pagination';
 import ProductPage from './ProductPage';
 import AdminNavbar from '../component/AdminNavbar';
+import Toast from '../component/Toast';
+import { useDispatch } from 'react-redux';
+import { createToastMessage } from '../slice/Toast';
+import { createAsyncCheckout } from '../slice/CheckLogin';
+import { useNavigate } from 'react-router-dom';
+
 
 const API_BASE = import.meta.env.VITE_BASE_API;
 
@@ -31,12 +37,15 @@ function AdminPage (){
     const [productsData,setProductsData] = useState([]);
     const [pagination,setPagination] = useState(null)
     const productModalRef = useRef(null);
-    
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const currentPage = 'admin'
     useEffect(() => {
         const token = document.cookie.replace(
         /(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/,
         "$1"
         );
+        dispatch(createAsyncCheckout({navigate,currentPage}))
         axios.defaults.headers.common.Authorization = token;
         productModalRef.current = new Modal('#productModal', {
         backdrop: 'static',
@@ -54,7 +63,7 @@ function AdminPage (){
         setProductsData(...[response.data?.products])
         setPagination({...response.data?.pagination})
         }catch(err){
-        alert(err.data.message);
+        alert(error.response?.data?.message);
         }
     };
     const handlePage = (page)=>{
@@ -63,10 +72,10 @@ function AdminPage (){
     const deleteProduct = async (id) => {
         try {
         const response = await axios.delete(`${API_BASE}/api/${API_PATH}/admin/product/${id}`);
-        alert(response?.data?.message);
         getProducts()
+        dispatch(createToastMessage(response?.data))
         } catch (error) {
-        alert(error.response?.data?.message)
+            alert(error.response?.data?.message)
         }
     }
     //modal相關
@@ -78,20 +87,21 @@ function AdminPage (){
         case "create" :
             try{
             const response  = await axios.post(`${API_BASE}/api/${API_PATH}/admin/product`,{data:modalState})
-            alert(response?.data?.message);
             productModalRef.current.hide();
             getProducts()
+            dispatch(createToastMessage(response?.data))
             }catch(err){
-            alert(err.response?.data?.message)
+            console.log(err.response?.data)
+            dispatch(createToastMessage(err.response?.data))
             }
         break;
         case 'edit' :
             try{
             const response  = await axios.put(`${API_BASE}/api/${API_PATH}/admin/product/${id}`,{data:modalState})
-            alert(response?.data?.message);
             productModalRef.current.hide();
             getProducts()
             setModalState(defaultModalState)
+            dispatch(createToastMessage(response?.data))
             }catch(err){
             alert(err.response?.data?.message)
             }
@@ -145,6 +155,7 @@ function AdminPage (){
         pagination={pagination}
         handlePage={handlePage}
         />
+        <Toast/>
     </>
     )
 }

@@ -1,7 +1,24 @@
 
-import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { NavLink, useNavigate } from "react-router-dom";
+
+const API_PATH = import.meta.env.VITE_BASE_API
 
 function AdminNavbar (){
+    const navigate = useNavigate()
+    const logout = async(e)=>{
+        
+        e.preventDefault()
+        try {
+            await axios.post(`${API_PATH}/logout`)
+            alert('登出成功幫您跳轉到首頁')
+            document.cookie = "hexToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            navigate('/')
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response?.data?.message)
+        }
+    }
     return(<>
         <nav className="navbar navbar-expand-lg  bg-secondary">
             <div className="container-fluid">
@@ -18,6 +35,14 @@ function AdminNavbar (){
                             )
                         }} to='/'> 回到前台首頁</NavLink>
                     </li>
+                    <li className="nav-item ">
+                        <NavLink className={({isActive}) =>{
+                            return (
+                                `nav-link ${isActive? 'text-light':''}`
+                            )
+                        }} to='/' onClick={(e)=>logout(e)}> 登出</NavLink>
+                    </li>
+
                 </ul>
                 </div>
             </div>

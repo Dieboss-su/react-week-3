@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState,} from 'react'
+
 
 function ModalPage ({handleModalInputChange,productModalRef,handleModalSubmit,modalState,setModalState,modalMode,API_PATH,API_BASE}){
     const closeModal = () => {

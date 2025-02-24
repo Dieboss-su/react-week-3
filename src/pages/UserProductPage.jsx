@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import ReactLoading from 'react-loading';
 import { Link } from "react-router-dom";
 
+
 const BASE_URL = import.meta.env.VITE_BASE_API;
 const API_PATH = import.meta.env.VITE_BASE_PATH;
 
@@ -196,6 +197,7 @@ function UserProductPage() {
             </table>
         </div>
     </div>
+    
     </>);
 }
 
